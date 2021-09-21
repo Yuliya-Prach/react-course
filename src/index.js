@@ -1,1 +1,1 @@
-window.alert('Webpack works!');
+window.alert('Webpack works and watches!');
