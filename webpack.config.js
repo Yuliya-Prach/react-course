@@ -1,34 +1,12 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { merge } = require('webpack-merge');
 
-module.exports = {
-    entry: {
-        main: path.resolve(__dirname, './src/index.js'),
-    },
+const commonConfig = require('./config/webpack.common.js');
 
-    output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: '[name].bundle.js',
-    },
-    plugins: [new HtmlWebpackPlugin()],
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: ['babel-loader'],
-            },
-            {
-                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-                type: 'asset/resource',
-            },
-        ],
+module.exports = (env) => {
+    const config = (env.hasOwnProperty('development')) ?
+        require('./config/webpack.development.js')
+    :
+        require('./config/webpack.production.js');
 
-    },
-    mode: 'development',
-    devServer: {
-        open: true,
-        compress: true,
-        port: 8000,
-    },
-}
+    return merge(commonConfig, config);
+};

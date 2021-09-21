@@ -1,0 +1,1 @@
+{"version":3,"file":"main.bundle.js","mappings":"AAAAA,OAAOC,MAAM","sources":["webpack://react-course/./src/index.js"],"sourcesContent":["window.alert('Webpack works!');"],"names":["window","alert"],"sourceRoot":""}
